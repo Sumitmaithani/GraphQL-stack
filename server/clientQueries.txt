@@ -1,0 +1,92 @@
+==========================================================================================
+
+query getAllUsers{
+  users{
+    _id
+    email
+    firstName
+    lastName
+    password
+  }
+}
+
+================================================================================
+
+query getUserById{
+  user(_id:"23131"){
+    _id
+    email
+    firstName
+    lastName
+  }
+}
+
+query getUserById($userid:ID!){
+  user(_id:$userid){
+    _id
+    email
+    firstName
+    lastName
+  }
+}
+
+=============================================================================
+
+query getAllQuotes{
+  quotes{
+    name
+    by
+  }
+}
+
+===================================================================================
+
+query getQuoteByUser{
+  iquote(by:"23131"){
+    name
+  }
+}
+
+query getQuoteByUser($userid:ID!){
+  iquote(by:$userid){
+    name
+    by
+  }
+}
+
+=========================================================================
+
+mutation createUser($userNew:UserInput!){
+  user:signupUser(userNew:$userNew){ 
+    _id
+    email
+    firstName
+    lastName
+  }
+}
+
+{
+  "userNew": {
+    "firstName": "john",
+    "lastName": "wick",
+    "email": "john@wick.com",
+    "password": "12345"
+  }
+}
+
+==========================================================================
+
+mutation signinUser($userSignin:UserSigninInput!){
+  user:signinUser(userSignin:$userSignin){ 
+   token
+  }
+}
+
+{
+  "userSignin":{
+	"email": "john@wick.com",
+    "password": "12345"
+  }
+}
+
+=============================================================================
